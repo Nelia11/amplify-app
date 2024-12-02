@@ -3,7 +3,7 @@ import { Button, Flex, Image, useAuthenticator } from '@aws-amplify/ui-react'
 import logo from '../src/assets/logo.png'
 
 const App = () => {
-  const { signOut } = useAuthenticator();
+  const { user, signOut } = useAuthenticator();
 
   return (
     <Flex
@@ -18,11 +18,15 @@ const App = () => {
         padding="1rem"
         backgroundColor="darkgreen"
       >
-        <Image src={logo} alt='logo' height={50} />
+        <Image src={logo} alt="logo" height={50} />
         <Button onClick={signOut}>Sign out</Button>
       </Flex>
-      <Flex justifyContent="center">
-        In plants we trust
+      <Flex
+        direction="column"
+        alignItems="center"
+      >
+        <h1>{user?.signInDetails?.loginId}</h1>
+        <p>In plants we trust</p>
       </Flex>
     </Flex>
   )
